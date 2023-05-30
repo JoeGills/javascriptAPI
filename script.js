@@ -80,7 +80,22 @@ function displayStorage() {
     storageItems.forEach(function (element) {
       createItem(element);
     });
+  } else {
+    // If no existing data in local storage, fetch data from the API
+    fetchDataAndDisplay();
   }
+}
+
+function fetchDataAndDisplay() {
+  fetch("https://jsonplaceholder.typicode.com/todos")
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((item) => {
+        createItem(item.title); // Assuming the API response contains a 'title' property for each item
+        updateStorage(item.title);
+      });
+    })
+    .catch((error) => console.log("Error fetching data from API:", error));
 }
 
 //remove all items

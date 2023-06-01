@@ -1,3 +1,5 @@
+"use strict";
+
 //Add items container
 const addItemsAction = document.querySelector(".addItems-action");
 const input = document.querySelector(".addItems-input");
